@@ -1,0 +1,13 @@
+@keyframes kf_transition{
+  0% {opacity: 1}
+  100% {opacity: 0}
+}
+
+#game_transition{
+  z-index: 3;
+  position: absolute;
+  height: 288px;
+  width: 320px;
+  background: rgb(50, 50, 50);
+  animation-timing-function: ease-in;
+}

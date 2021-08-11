@@ -1,0 +1,7 @@
+#game{
+  position: absolute;
+  height: 288px;
+  width: 320px;
+  overflow: hidden;
+  background: rgb(50, 50, 50);
+}

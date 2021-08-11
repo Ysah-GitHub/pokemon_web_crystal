@@ -1,0 +1,30 @@
+body{
+  margin: 0;
+  background: rgb(45, 45, 45);
+}
+
+p{
+  font-family: "pokemon_gb";
+}
+
+span{
+  font-family: "pokemon_gb";
+}
+
+input{
+  font-family: "pokemon_gb";
+}
+
+input[type=button]{
+  text-align: center;
+}
+input[type=button]:hover{
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb:hover{
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb:hover{
+  cursor: pointer;
+}

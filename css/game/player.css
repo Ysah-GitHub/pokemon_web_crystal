@@ -1,0 +1,39 @@
+#player{
+  z-index: 2;
+  position: absolute;
+  top: 120px;
+  left: 128px;
+  height: 32px;
+  width: 32px;
+  background-size: 32px !important;
+}
+#player.up{
+  background: url("../../rsc/tileset/player_up.png");
+}
+#player.up.animation_right{
+  background: url("../../rsc/tileset/player_up_animation_right.png");
+}
+#player.up.animation_left{
+  background: url("../../rsc/tileset/player_up_animation_left.png");
+}
+#player.down{
+  background: url("../../rsc/tileset/player_down.png");
+}
+#player.down.animation_right{
+  background: url("../../rsc/tileset/player_down_animation_right.png");
+}
+#player.down.animation_left{
+  background: url("../../rsc/tileset/player_down_animation_left.png");
+}
+#player.right{
+  background: url("../../rsc/tileset/player_right.png");
+}
+#player.right.animation{
+  background: url("../../rsc/tileset/player_right_animation.png");
+}
+#player.left{
+  background: url("../../rsc/tileset/player_left.png");
+}
+#player.left.animation{
+  background: url("../../rsc/tileset/player_left_animation.png");
+}

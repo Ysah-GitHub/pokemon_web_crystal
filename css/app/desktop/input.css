@@ -1,0 +1,51 @@
+#input_a{
+  margin: calc(50vh - 400px) 0 0 144px;
+}
+@media ( max-height: 1080px ){
+  #input_a{
+    margin: 140px 0 0 144px;
+  }
+}
+
+.input_{
+  display: inline-block;
+  height: 48px;
+  width: 536px;
+  margin: 96px 0 0 144px;
+}
+
+.input_ > *{
+  position: absolute;
+  display: inline-block;
+  height: 48px;
+  background: rgb(40, 40, 40);
+  line-height: 48px;
+  font-size: 20px;
+  color: rgb(150, 150, 150);
+  text-align: center;
+  font-family: "pokemon_gb";
+}
+
+.input_ > div:nth-child(1){
+  width: 144px;
+}
+
+.input_ > div:nth-child(2){
+  width: 288px;
+  margin: 0 0 0 192px;
+  transition: background-color 0.2s;
+}
+.input_ > div:nth-child(2):hover{
+  cursor: pointer;
+  background-color: rgba(255, 50, 50, 0.1);
+}
+
+.input_ > img:nth-child(3){
+  width: 48px;
+  margin: 0 0 0 488px;
+  transition: background-color 0.2s;
+}
+.input_ > img:nth-child(3):hover{
+  cursor: pointer;
+  background-color: rgba(255, 50, 50, 0.1);
+}

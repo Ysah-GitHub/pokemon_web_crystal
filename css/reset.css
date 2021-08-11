@@ -1,0 +1,42 @@
+p{
+  margin: 0;
+  padding: 0;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+ol{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li{
+  margin: 0;
+  padding: 0;
+}
+
+input{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  width: 0;
+  background: none;
+  border: none;
+  font: inherit;
+}
+input:focus{
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+}
+input[type=range]::-moz-range-thumb{
+  -moz-appearance: none;
+}

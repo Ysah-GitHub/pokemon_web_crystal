@@ -1,0 +1,15 @@
+@keyframes kf_opacity_on{
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes kf_opacity_off{
+  0% {opacity: 1}
+  100% {opacity: 0}
+}
+
+@keyframes kf_opacity_off_on{
+  0% {opacity: 0}
+  50% {opacity: 1}
+  100% {opacity: 0}
+}

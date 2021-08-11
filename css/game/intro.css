@@ -1,0 +1,23 @@
+#intro{
+  height: 288px;
+  width: 320px;
+  user-select: none;
+}
+#intro:hover{
+  cursor: pointer;
+}
+
+#intro > img:nth-child(1){
+  display: block;
+  width: 268px;
+  margin: auto;
+  padding-top: 42px;
+}
+
+#intro > p:nth-child(2){
+  margin-top: 24px;
+  line-height: 42px;
+  text-align: center;
+  font-size: 10px;
+  color: rgb(255, 255, 255);
+}

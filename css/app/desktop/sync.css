@@ -1,0 +1,65 @@
+#sync{
+  z-index: 5;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.95);
+}
+
+#sync_window{
+  height: 576px;
+  width: 640px;
+  margin: calc(50vh - 288px) auto 0 auto;
+  background: rgb(25, 25, 25);
+}
+
+#sync_window > img:nth-child(1){
+  position: absolute;
+  margin-left: 24px;
+  padding: 16px;
+  background-color: rgb(40, 40, 40);
+}
+#sync_window > img:nth-child(1):hover{
+  cursor: pointer;
+  background-color: rgba(255, 50, 50, 0.1);
+}
+
+#sync_message{
+  position: absolute;
+  width: 488px;
+  margin: 24px 0 0 128px;
+  color: rgb(255, 255, 255);
+}
+
+#sync_username{
+  position: absolute;
+  height: 80px;
+  width: 336px;
+  margin: 144px 0 0 152px;
+  background-color: rgb(40, 40, 40);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+}
+
+#sync_password{
+  position: absolute;
+  height: 80px;
+  width: 336px;
+  margin: 272px 0 0 152px;
+  background-color: rgb(40, 40, 40);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+}
+
+#sync_validation{
+  position: absolute;
+  height: 80px;
+  width: 240px;
+  margin: 400px 0 0 200px;
+  background-color: rgb(40, 40, 40);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+}

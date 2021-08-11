@@ -1,0 +1,143 @@
+#input_touch{
+  position: absolute;
+  width: 100vw;
+}
+body.portrait #input_touch{
+  bottom: 0;
+}
+
+#input_touch > *{
+  position: absolute;
+  background-color: rgba(55, 55, 55, 0.8);
+  border-radius: 10px;
+  color: rgb(90, 90, 90);
+}
+
+#input_touch_a{
+  height: 65px;
+  width: 65px;
+  line-height: 75px;
+}
+body.portrait #input_touch_a{
+  bottom: 300px;
+  left: calc(50vw + 100px);
+}
+body.landscape #input_touch_a{
+  top: 35px;
+  right: 42.5px;
+}
+
+#input_touch_b{
+  height: 65px;
+  width: 65px;
+  line-height: 65px;
+}
+body.portrait #input_touch_b{
+  bottom: 225px;
+  left: calc(50vw + 25px);
+}
+body.landscape #input_touch_b{
+  top: 125px;
+  right: 42.5px;
+}
+
+#input_touch_up{
+  height: 65px;
+  width: 65px;
+  line-height: 65px;
+}
+body.portrait #input_touch_up{
+  bottom: 300px;
+  left: calc(50vw - 127.5px);
+}
+body.landscape #input_touch_up{
+  top: 125px;
+  left: 47.5px;
+}
+
+#input_touch_left{
+  height: 65px;
+  width: 65px;
+  line-height: 65px;
+}
+body.portrait #input_touch_left{
+  bottom: 225px;
+  left: calc(50vw - 165px);
+}
+body.landscape #input_touch_left{
+  top: 200px;
+  left: 10px;
+}
+
+#input_touch_right{
+  height: 65px;
+  width: 65px;
+  line-height: 65px;
+}
+body.portrait #input_touch_right{
+  bottom: 225px;
+  left: calc(50vw - 90px);
+}
+body.landscape #input_touch_right{
+  top: 200px;
+  left: 85px;
+}
+
+#input_touch_down{
+  height: 65px;
+  width: 65px;
+  line-height: 65px;
+}
+body.portrait #input_touch_down{
+  bottom: 150px;
+  left: calc(50vw - 127.5px);
+}
+body.landscape #input_touch_down{
+  top: 275px;
+  left: 47.5px;
+}
+
+#input_touch_select{
+  height: 50px;
+  width: 100px;
+  font-size: 12px;
+  line-height: 50px;
+}
+body.portrait #input_touch_select{
+  bottom: 50px;
+  left: calc(50vw - 125px);
+}
+body.landscape #input_touch_select{
+  top: 215px;
+  right: 25px;
+}
+
+#input_touch_start{
+  height: 50px;
+  width: 100px;
+  font-size: 12px;
+  line-height: 50px;
+}
+body.portrait #input_touch_start{
+  bottom: 50px;
+  left: calc(50vw + 25px);
+}
+body.landscape #input_touch_start{
+  top: 290px;
+  right: 25px;
+}
+
+#input_touch_menu{
+  height: 75px;
+  width: 75px;
+  background: url("../../../rsc/icon/menu.png");
+  background-size: 75px;
+}
+body.portrait #input_touch_menu{
+  bottom: 125px;
+  left: calc(50vw - 37.5px);
+}
+body.landscape #input_touch_menu{
+  left: 42.5px;
+  top: 25px;
+}

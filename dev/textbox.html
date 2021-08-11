@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!---CSS---------->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/master.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <!---CSS Game---------->
+    <link rel="stylesheet" href="../css/game/textbox.css">
+    <!---CSS Custom---------->
+    <style>
+    #game{
+      height: 288px;
+      width: 320px;
+      margin: 288px 0 0 calc(50vw - 160px);
+      overflow: hidden;
+      transform: scale(2);
+      background: rgb(50, 50, 50);
+    }
+    #game_textbox{
+      display: block;
+    }
+    #testbox{
+      display: block;
+      height: 144px;
+      width: 320px;
+      transform: scale(2);
+      margin: 288px 0 0 calc(50vw - 160px);
+      padding: 4px;
+      resize: none;
+      border: none;
+      box-sizing: border-box;
+      background: rgb(50, 50, 50);
+      color: rgb(235, 235, 235);
+    }
+    #testbox:focus{
+      outline: none;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="game">
+      <p id="game_textbox"></p>
+    </div>
+    <textarea id="testbox"></textarea>
+    <!---Scripts---------->
+    <script>
+    /* -------------------- Events -------------------- */
+    // ----- input
+    document.getElementById("testbox").addEventListener("input", function(){
+      document.getElementById("game_textbox").innerHTML = document.getElementById("testbox").value;
+    });
+    </script>
+  </body>
+</html>

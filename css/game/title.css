@@ -1,0 +1,86 @@
+@keyframes kf_title_animation{
+  0% {transform: scale(1.35) translate(0, 0)}
+  50% {transform: scale(1.35) translate(0, 12px)}
+  100% {transform: scale(1.35) translate(0, 0)}
+}
+
+@keyframes kf_title_transition{
+  0% {margin: 0; width: 320px; background: rgb(50, 50, 50)}
+  10% {background: rgba(0, 0, 0, 0.2)}
+  100% {margin: 0 0 0 172px; width: 128px}
+}
+
+@keyframes kf_title_background{
+  0% {transform: translate(0, 0)}
+  100% {transform: translate(-320px, 0)}
+}
+
+#title_background{
+  position: absolute;
+  height: 288px;
+  width: 320px;
+}
+#title_background > *{
+  position: absolute;
+  height: 288px;
+  width: 320px;
+}
+#title_background > div:nth-child(1){
+  background: url("../../rsc/sprite/title_background_2.png");
+  background-size: 320px;
+}
+#title_background > div:nth-child(2){
+  width: 640px;
+  background: url("../../rsc/sprite/title_background_1.png");
+  background-repeat: repeat;
+  background-size: 320px;
+  animation: kf_title_background 4s infinite;
+  animation-timing-function: linear;
+}
+
+#title_menu{
+  position: absolute;
+  height: 288px;
+  width: 128px;
+  margin: 0 0 0 172px;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgb(235, 235, 235);
+  font-size: 11px;
+  font-family: "pokemon_gb";
+  animation: kf_title_transition 0.7s;
+  animation-timing-function: linear;
+}
+
+#title_menu > img:nth-child(1){
+  display: block;
+  width: 128px;
+  margin: 16px auto;
+  transform: scale(1.35) translate(0, 0);
+  animation: kf_title_animation 1s infinite;
+  animation-delay: 0.7s;
+}
+
+#title_menu > p{
+  margin: 6px 0 0 0;
+  padding: 6px 0;
+  text-align: center;
+  user-select: none;
+  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+#title_menu > p:hover{
+  cursor: pointer;
+}
+#title_menu > p.select{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#title_menu > p:nth-child(2){
+  margin: 48px 0 0 0;
+}
+
+#title_menu > div:nth-child(5){
+  margin: 32px 0 0 0;
+  text-align: center;
+  color: rgb(120, 120, 120);
+  font-size: 6px;
+}

@@ -1,0 +1,25 @@
+#response_box{
+  z-index: 2;
+  position: absolute;
+  user-select: none;
+  top: 160px;
+  left: 4px;
+  height: 60px;
+  width: 90px;
+  border: 1px solid rgb(25, 25, 25);
+  background-color: rgba(35, 35, 35, 0.95);
+}
+#response_box > div{
+  font-family: "pokemon_gb";
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  color: rgb(65, 65, 65);
+  text-shadow: 0px 0px 2px rgb(0, 0, 0);
+}
+#response_box > div.select{
+  color: rgb(255, 255, 255);
+}
+#response_box > div:hover{
+  cursor: pointer;
+}

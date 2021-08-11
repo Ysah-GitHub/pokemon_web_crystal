@@ -1,0 +1,27 @@
+#textbox{
+  z-index: 2;
+  position: absolute;
+  top: 224px;
+  left: 4px;
+  height: 60px;
+  width: 312px;
+  padding: 0 7px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: rgba(35, 35, 35, 0.95);
+  font-family: "pokemon_gb";
+  font-size: 14px;
+  line-height: 30px;
+  color: rgb(255, 255, 255);
+  text-shadow: 0px 0px 2px rgb(0, 0, 0);
+  user-select: none;
+  border: 1px solid rgb(25, 25, 25);
+}
+
+#textbox_icon{
+  position: absolute;
+  right: 0;
+  height: 15px;
+  width: 15px;
+  margin: 7px;
+}

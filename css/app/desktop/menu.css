@@ -1,0 +1,83 @@
+#menu{
+  z-index: 2;
+  position: fixed;
+  height: 100vh;
+  width: 144px;
+  overflow: hidden;
+  background: rgb(40, 40, 40);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 0px;
+  transition: width 0.2s;
+}
+#menu.expand{
+  width: 368px;
+}
+
+#menu > ul{
+  width: 368px;
+  margin-top: calc(50vh - 288px);
+}
+@media ( max-height: 672px ){
+  #menu > ul{
+    margin-top: 48px;
+  }
+}
+
+#menu > ul > li{
+  padding: 16px 0;
+  border-left: 16px solid rgb(40, 40, 40);
+  user-select: none;
+}
+#menu > ul > li:nth-child(6){
+  margin-top: 156px;
+}
+#menu > ul > li:hover{
+  cursor: pointer;
+  border-left: 16px solid rgb(255, 50, 50);
+  background-color: rgba(255, 50, 50, 0.1);
+}
+
+#menu > ul > li > img{
+  margin-left: 32px; /* (48px - 16px) because li have border */
+}
+
+#menu > ul > li > span{
+  position: absolute;
+  left: 146px;
+  line-height: 48px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: rgb(245, 245, 245);
+}
+
+.menu_section{
+  z-index: 1;
+  position: absolute;
+  left: 368px;
+  height: 100vh;
+  overflow-x: hidden;
+  width: calc(100vw - 368px);
+  background: rgb(45, 45, 45);
+}
+
+.menu_header{
+  margin-top: 48px;
+}
+
+.menu_header > img{
+  margin-left: 48px;
+  padding: 16px;
+  background-color: rgb(40, 40, 40);
+}
+.menu_header > img:hover{
+  cursor: pointer;
+  background-color: rgba(255, 50, 50, 0.1);
+}
+
+.menu_header > span{
+  position: absolute;
+  left: 256px;
+  padding: 16px;
+  line-height: 48px;
+  font-size: 32px;
+  color: rgb(245, 245, 245);
+}

@@ -1,0 +1,56 @@
+#game_new_sprite_oak, #game_new_sprite_pokemon{
+  position: absolute;
+  opacity: 0;
+  top: 60px;
+  left: 88px;
+  height: 144px;
+}
+
+#game_new_player_name, #game_new_player_name_validation{
+  position: absolute;
+  display: none;
+  height: 30px;
+  top: 188px;
+  font-size: 14px;
+  background-color: rgba(35, 35, 35, 0.95);
+  padding: 0 7px;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(25, 25, 25);
+  box-sizing: content-box;
+}
+#game_new_player_name{
+  left: 4px;
+  width: 192px;
+}
+#game_new_player_name_validation{
+  left: 218px;
+  width: 82px;
+  text-align: center;
+}
+#game_new_player_name_validation:hover{
+  cursor: pointer;
+}
+
+#game_new_pokemon_1{
+  position: absolute;
+  opacity: 0;
+  top: 90px;
+  left: 0px;
+  height: 112px;
+}
+
+#game_new_pokemon_2{
+  position: absolute;
+  opacity: 0;
+  top: 90px;
+  left: 104px;
+  height: 112px;
+}
+
+#game_new_pokemon_3{
+  position: absolute;
+  opacity: 0;
+  top: 90px;
+  left: 208px;
+  height: 112px;
+}

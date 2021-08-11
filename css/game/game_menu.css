@@ -1,0 +1,22 @@
+#game_menu{
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  height: 288px;
+  width: 144px;
+  background-color: rgb(35, 35, 35, 0.95);
+}
+#game_menu > p{
+  margin: 12px 0 0 0;
+  padding: 8px;
+  font-size: 12px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  text-shadow: 0px 0px 2px rgb(0, 0, 0);
+}
+
+#game_menu > p:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-color 0.2s;
+}

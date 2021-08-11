@@ -1,0 +1,53 @@
+#audio_music{
+  margin: calc(50vh - 400px) 0 0 144px;
+}
+@media ( max-height: 1080px ){
+  #audio_music{
+    margin: 140px 0 0 144px;
+  }
+}
+
+.audio_{
+  display: inline-block;
+  height: 120px;
+  width: 536px;
+  margin: 96px 0 0 144px;
+}
+
+.audio_ > *{
+  position: absolute;
+  display: inline-block;
+  height: 48px;
+  background: rgb(40, 40, 40);
+  line-height: 48px;
+  font-size: 20px;
+  color: rgb(240, 240, 240);
+  text-align: center;
+  font-family: "pokemon_gb";
+}
+.audio_ > *:nth-child(1){
+  width: 288px;
+}
+.audio_ > *:nth-child(2){
+  width: 144px;
+  margin: 0 0 0 392px;
+  padding: 0;
+  border: none;
+}
+.audio_ > *:nth-child(3){
+  height: 24px;
+  width: 536px;
+  margin: 72px 0 0 0;
+}
+.audio_ > *:nth-child(3)::-webkit-slider-thumb{
+  height: 48px;
+  width: 36px;
+  background: rgb(255, 55, 55);
+}
+.audio_ > *:nth-child(3)::-moz-range-thumb{
+  height: 48px;
+  width: 36px;
+  border: none;
+  border-radius: 0;
+  background: rgb(255, 55, 55);
+}

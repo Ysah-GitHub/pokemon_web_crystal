@@ -1,0 +1,65 @@
+#game_menu{
+  height: 288px;
+  width: 128px;
+  margin: 0 0 0 172px;
+  background: rgb(40, 40, 40);
+  color: rgb(235, 235, 235);
+  font-size: 11px;
+  font-family: "pokemon_gb";
+  text-align: center;
+}
+#game_menu > p{
+  margin: 6px 0 0 0;
+  padding: 6px 0;
+}
+#game_menu > p:hover{
+  cursor: pointer;
+  background-color: rgb(35, 35, 35);
+}
+
+#game_menu > img:nth-child(1){
+  width: 160px;
+  margin: 8px 0 0 -16px;
+}
+
+#game_menu > p:nth-child(2){
+  margin: 32px 0 0 0;
+}
+
+#game_menu > div:nth-child(5){
+  margin: 48px 0 0 0;
+  color: rgb(120, 120, 120);
+  font-size: 6px;
+}
+
+
+
+
+
+
+
+/* #game_menu{
+  height: 288px;
+  overflow: auto;
+  background-color: rgb(235, 235, 235);
+}
+
+#game_menu > *:nth-child(1){
+  margin: 16px;
+  border: 6px double rgb(35, 35, 35);
+}
+
+#game_menu > *:nth-child(1) > div{
+  margin: 0 0 0 16px;
+  font-family: "pokemon_gb";
+  font-size: 12px;
+}
+#game_menu > *:nth-child(1) > div:hover{
+  cursor: pointer;
+}
+
+#game_menu_selector{
+  position: absolute;
+  font-size: 12px;
+  line-height: 13px;
+} */

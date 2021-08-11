@@ -1,0 +1,14 @@
+#game_map{
+  position: absolute;
+  top: -32px;
+  left: -32px;
+  height: 352px;
+  width: 384px;
+}
+
+#game_map > *{
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background-size: 32px !important;
+}

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!---CSS---------->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/master.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <!---CSS Custom---------->
+    <style>
+    /*---All----------*/
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+      }
+      body{
+        overflow: hidden;
+      }
+      input{
+        font-size: 20px;
+        font-family: "pokemon_gb";
+        border: none;
+        background: rgb(45, 45, 45);
+        color: rgb(245, 245, 245);
+        text-align: center;
+      }
+      input[type=button]:hover{
+        cursor: pointer;
+      }
+      p{
+        text-align: center;
+      }
+      section{
+        text-align: center;
+        padding: 32px;
+        border-bottom: 1px solid rgb(100, 100, 100);
+      }
+      textarea{
+        color: rgb(135, 135, 135);
+        background-color: rgb(45, 45, 45);
+        resize: none;
+        border: none;
+      }
+      textarea:focus{
+        outline: none;
+      }
+      ::-webkit-scrollbar{
+        height: 8px;
+        width: 8px;
+        background-color: rgb(45, 45, 45);
+      }
+      ::-webkit-scrollbar-thumb{
+        background-color: rgb(70, 110, 200);
+      }
+      ::-webkit-scrollbar-corner{
+        background-color: rgb(45, 45, 45);
+      }
+      /*---Animation----------*/
+      @keyframes kf_tileset_locked{
+        0% {transform: scale(1);}
+        50% {transform: scale(1.3);}
+        100% {transform: scale(1);}
+      }
+      @keyframes kf_error{
+        0% {transform: translate(0px, 0px); opacity: 1;}
+        100% {transform: translate(0px, -300px); opacity: 0;}
+      }
+      /*---Menu----------*/
+      #menu{
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        height: 100vh;
+        width: 416px;
+        overflow: auto;
+        scrollbar-color: rgb(70, 110, 200) rgb(45, 45, 45);
+        scrollbar-width: thin;
+        background: rgb(40, 40, 40);
+        color: rgb(245, 245, 245);
+        font-size: 20px;
+        font-family: "pokemon_gb";
+      }
+      #menu input[type=range]{
+        height: 32px;
+        width: 352px;
+        margin: 32px auto 0 auto;
+      }
+      #menu input[type=range]::-webkit-slider-thumb{
+        height: 48px;
+        width: 36px;
+        background: rgb(70, 110, 200);
+      }
+      #menu input[type=range]::-moz-range-thumb{
+        height: 48px;
+        width: 36px;
+        border: none;
+        border-radius: 0;
+        background: rgb(70, 110, 200);
+      }
+      /*---Menu Map----------*/
+      #generate_map_y > input, #generate_map_x > input{
+        height: 48px;
+        width: 144px;
+        margin: 16px 0 0 8px;
+      }
+      #generate_map, #import_map_button{
+        height: 64px;
+        width: 176px;
+        margin: 24px 0 32px 0;
+      }
+      #import_map{
+        height: 64px;
+        width: 240px;
+        margin: 32px 0 0 0;
+      }
+      /*---Menu Add / Remove Block----------*/
+      #menu_add_remove_block > div{
+        margin: 32px 0 0 0;
+      }
+      #menu_add_remove_block > div > div{
+        position: absolute;
+        height: 48px;
+        width: 48px;
+        line-height: 48px;
+        background-color: rgb(45, 45, 45);
+        transition: transform 0.2s;
+        user-select: none;
+      }
+      #menu_add_remove_block > div > div:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+      #menu_add_remove_block > div > div:nth-child(3){
+        right: 0;
+        margin: -48px 32px 0 0;
+      }
+      #menu_add_remove_block p{
+        font-size: 16px;
+        color: rgb(130, 130, 130);
+        line-height: 48px;
+      }
+      /*---Menu Movement----------*/
+      #movement > *{
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        margin: 32px 0 0 0;
+        line-height: 32px;
+        text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+        transition: transform 0.2s;
+      }
+      #movement > *:hover{
+        cursor: pointer;
+        transform: scale(2);
+      }
+      .movement_0{
+        background-color: rgba(255, 75, 75) !important;
+      }
+      .movement_1{
+        background-color: rgba(75, 255, 75) !important;
+      }
+      .movement_2{
+        background-color: rgba(255, 255, 75) !important;
+      }
+      .movement_3{
+        background-color: rgba(75, 75, 255) !important;
+      }
+      /*---Menu Tileset----------*/
+      #tileset{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 32px 0 0 0;
+      }
+      #tileset > *{
+        height: 32px;
+        width: 32px;
+        background-size: 32px;
+        transition: transform 0.2s;
+      }
+      #tileset > *:hover{
+        cursor: pointer;
+        transform: scale(2);
+      }
+      /*---Layer----------*/
+      #layer{
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 192px;
+        background: rgb(40, 40, 40);
+        color: rgb(245, 245, 245);
+        font-size: 20px;
+        font-family: "pokemon_gb";
+      }
+      #select{
+        height: 64px;
+        width: 64px;
+        margin: 16px auto 0 auto;
+        background-size: 64px;
+        background-color: rgb(45, 45, 45);
+      }
+      #select.locked{
+        animation: kf_tileset_locked 0.5s infinite;
+      }
+      #select:hover{
+        cursor: pointer;
+        filter: grayscale(1);
+      }
+      #layer_list{
+        padding: 32px 0;
+      }
+      #layer_list > *{
+        height: 64px;
+        width: 192px;
+        margin: 16px 0 0 0;
+        line-height: 64px;
+        border: 1px solid rgb(50, 50, 50);
+      }
+      #layer_list > *:hover{
+        cursor: pointer;
+      }
+      #layer_list > *.selected{
+        transition: background-color 0.5s;
+        background-color: rgb(70, 110, 200);
+      }
+      /*---Export Map----------*/
+      #menu_export_map{
+        padding: 32px 0;
+      }
+      #menu_export_map > input{
+        height: 64px;
+        width: 174px;
+      }
+      #menu_export_map > textarea{
+        height: 32px;
+        width: 174px;
+        margin: 32px 0 0 0;
+      }
+      /*---Map----------*/
+      #map{
+        position: absolute;
+        left: 416px;
+        height: 100vh;
+        width: calc(100vw - 608px);
+        overflow: auto;
+        scrollbar-color: rgb(70, 110, 200) rgb(45, 45, 45);
+      }
+      #map > *{
+        position: absolute;
+      }
+      #map > * > *{
+        position: absolute;
+        display: none;
+        height: 32px;
+        width: 32px;
+        background-size: 32px;
+        border: 1px solid rgb(130, 130, 130);
+      }
+      #map > * > *:hover{
+        border: 2px solid rgb(225, 225, 225);
+      }
+      #map.layer_0.important > *:nth-child(1){
+        z-index: 1;
+      }
+      #map.layer_0 > *:nth-child(1) > *{
+        display: block;
+      }
+      #map.layer_1 > *:nth-child(2) > *{
+        display: block;
+      }
+      #map.layer_2 > *:nth-child(3) > *{
+        display: block;
+      }
+      /*---Error----------*/
+      #error > *{
+        z-index: 2;
+        position: absolute;
+        opacity: 0;
+        color: rgb(255, 70, 70);
+        text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+        font-size: 24px;
+        font-family: "pokemon_gb";
+        user-select: none;
+      }
+      #error > *.kf_error{
+        animation: kf_error 5s;
+      }
+      /*---Tilesets----------*/
+      /* Ripped by Desgardes */
+      /* Thank you <3 */
+      .a{background: url("../rsc/tileset/grass.png")}
+      .b{background: url("../rsc/tileset/ground.png")}
+      .c{background: url("../rsc/tileset/tall_grass.png")}
+      .d{background: url("../rsc/tileset/bush.png")}
+      .e{background: url("../rsc/tileset/tree_top.png")}
+      .f{background: url("../rsc/tileset/tree_bottom.png")}
+      .aa{background: url("../rsc/tileset/ground_wood.png")}
+      .ab{background: url("../rsc/tileset/wall_wood.png")}
+      .ac{background: url("../rsc/tileset/ground_lab.png")}
+      .ba{background: url("../rsc/tileset/stairs_1.png")}
+      .bb{background: url("../rsc/tileset/stairs_2.png")}
+      .ca{background: url("../rsc/tileset/table_1_foot_right.png")}
+      .cb{background: url("../rsc/tileset/table_1_foot_left.png")}
+      .cc{background: url("../rsc/tileset/table_1_bottom_right.png")}
+      .cd{background: url("../rsc/tileset/table_1_bottom_left.png")}
+      .ce{background: url("../rsc/tileset/table_1_top_right.png")}
+      .cf{background: url("../rsc/tileset/table_1_top_left.png")}
+      .cg{background: url("../rsc/tileset/table_1_right.png")}
+      .ch{background: url("../rsc/tileset/table_1_left.png")}
+      .ci{background: url("../rsc/tileset/stool.png")}
+      .cj{background: url("../rsc/tileset/bed_1_bottom.png")}
+      .ck{background: url("../rsc/tileset/bed_1_top.png")}
+      .cl{background: url("../rsc/tileset/radio_1.png")}
+      .cm{background: url("../rsc/tileset/panel.png")}
+      .cn{background: url("../rsc/tileset/computer_1_bottom.png")}
+      .co{background: url("../rsc/tileset/computer_1_top.png")}
+      .cp{background: url("../rsc/tileset/tv_1_bottom_1.png")}
+      .cq{background: url("../rsc/tileset/tv_1_bottom_2.png")}
+      .cr{background: url("../rsc/tileset/tv_1_top.png")}
+      .cs{background: url("../rsc/tileset/bookcase_1_bottom.png")}
+      .ct{background: url("../rsc/tileset/bookcase_1_top.png")}
+      .cu{background: url("../rsc/tileset/frame_1.png")}
+      .cv{background: url("../rsc/tileset/rug_1.png")}
+      .cw{background: url("../rsc/tileset/rug_2.png")}
+      .cx{background: url("../rsc/tileset/rug_3.png")}
+      .cy{background: url("../rsc/tileset/door_1.png")}
+      .cz{background: url("../rsc/tileset/furniture_1.png")}
+      .da{background: url("../rsc/tileset/gas_cooker_1.png")}
+      .db{background: url("../rsc/tileset/kitchen_sink_1.png")}
+      .dc{background: url("../rsc/tileset/fridge_1_bottom.png")}
+      .dd{background: url("../rsc/tileset/fridge_1_top.png")}
+      .de{background: url("../rsc/tileset/table_1_top_left_split.png")}
+      .df{background: url("../rsc/tileset/table_1_top_right_split.png")}
+      .dg{background: url("../rsc/tileset/table_1_middle_split.png")}
+      .dh{background: url("../rsc/tileset/table_1_middle_bottom_split.png")}
+      .di{background: url("../rsc/tileset/house_roof_1_bottom_left.png")}
+      .dj{background: url("../rsc/tileset/house_roof_1_bottom_middle.png")}
+      .dk{background: url("../rsc/tileset/house_roof_1_bottom_right.png")}
+      .dl{background: url("../rsc/tileset/house_roof_1_top_left.png")}
+      .dm{background: url("../rsc/tileset/house_roof_1_top_middle.png")}
+      .dn{background: url("../rsc/tileset/house_roof_1_top_right.png")}
+      .do{background: url("../rsc/tileset/house_roof_1_left.png")}
+      .dp{background: url("../rsc/tileset/house_roof_1_middle.png")}
+      .dq{background: url("../rsc/tileset/house_roof_1_right.png")}
+      .dr{background: url("../rsc/tileset/house_1_bottom_left.png")}
+      .ds{background: url("../rsc/tileset/house_1_bottom_middle.png")}
+      .dt{background: url("../rsc/tileset/house_1_bottom_right.png")}
+      .du{background: url("../rsc/tileset/house_1_top_left.png")}
+      .dv{background: url("../rsc/tileset/house_1_top_middle.png")}
+      .dw{background: url("../rsc/tileset/house_1_top_right.png")}
+      .dx{background: url("../rsc/tileset/house_1_window_1.png")}
+      .dy{background: url("../rsc/tileset/house_1_window_2.png")}
+      .dz{background: url("../rsc/tileset/house_1_window_3.png")}
+      .ea{background: url("../rsc/tileset/house_1_window_4.png")}
+      .eb{background: url("../rsc/tileset/water.png")}
+      .ec{background: url("../rsc/tileset/water_animation_1.png")}
+      .ed{background: url("../rsc/tileset/water_animation_2.png")}
+      .ee{background: url("../rsc/tileset/water_animation_3.png")}
+      .ef{background: url("../rsc/tileset/flower_bottom.png")}
+      .eg{background: url("../rsc/tileset/flower_top.png")}
+      .eh{background: url("../rsc/tileset/flower_bottom_animation.png")}
+      .ei{background: url("../rsc/tileset/flower_top_animation.png")}
+      .ej{background: url("../rsc/tileset/border_1_left.png")}
+      .ek{background: url("../rsc/tileset/border_1_top_left.png")}
+      .el{background: url("../rsc/tileset/border_1_top.png")}
+      .em{background: url("../rsc/tileset/border_1_top_right.png")}
+      .en{background: url("../rsc/tileset/border_1_right.png")}
+      .eo{background: url("../rsc/tileset/border_1_bottom_right.png")}
+      .ep{background: url("../rsc/tileset/border_1_bottom.png")}
+      .eq{background: url("../rsc/tileset/border_1_bottom_left.png")}
+      .er{background: url("../rsc/tileset/bookcase_2_bottom.png")}
+      .es{background: url("../rsc/tileset/bookcase_2_top.png")}
+      .et{background: url("../rsc/tileset/table_2_foot_left.png")}
+      .eu{background: url("../rsc/tileset/table_2_foot.png")}
+      .ev{background: url("../rsc/tileset/table_2_foot_right.png")}
+      .ew{background: url("../rsc/tileset/table_2_top_left.png")}
+      .ex{background: url("../rsc/tileset/table_2_top.png")}
+      .ey{background: url("../rsc/tileset/table_2_top_right.png")}
+      .ez{background: url("../rsc/tileset/ben.png")}
+      .fa{background: url("../rsc/tileset/wall_lab.png")}
+      .fb{background: url("../rsc/tileset/window_1.png")}
+      .fc{background: url("../rsc/tileset/window_2.png")}
+      .fd{background: url("../rsc/tileset/engine_1_bottom_left.png")}
+      .fe{background: url("../rsc/tileset/engine_1_bottom_right.png")}
+      .ff{background: url("../rsc/tileset/engine_1_top_left.png")}
+      .fg{background: url("../rsc/tileset/engine_1_top_right.png")}
+      .fh{background: url("../rsc/tileset/computer_2_left.png")}
+      .fi{background: url("../rsc/tileset/computer_2_right.png")}
+    </style>
+  </head>
+  <body>
+    <!---Menu---------->
+    <aside id="menu">
+      <!---Section Menu Map---------->
+      <section id="menu_map">Generate Map
+        <div id="generate_map_y"><label>Y</label><input type="text"></div>
+        <div id="generate_map_x"><label>X</label><input type="text"></div>
+        <input id="generate_map" type="button" value="Generate">
+        <p>OR</p>
+        <input id="import_map" type="text">
+        <input id="import_map_button" type="button" value="Import">
+      </section>
+      <!---Section Add/Remove Map Block---------->
+      <section id="menu_add_remove_block"> Remove/Add Block
+        <div><div>-</div><p>Top</p><div>+</div></div>
+        <div><div>-</div><p>Bottom</p><div>+</div></div>
+        <div><div>-</div><p>Right</p><div>+</div></div>
+        <div><div>-</div><p>Left</p><div>+</div></div>
+      </section>
+      <!---Section Menu Movement---------->
+      <section id="menu_movement">Movement
+        <div id="movement">
+          <div class="movement_0">0</div>
+          <div class="movement_1">1</div>
+          <div class="movement_2">2</div>
+          <div class="movement_3">3</div>
+        </div>
+        <input id="movement_opacity_range" type="range" min="0" max="100" value="100" title="opacity">
+        <input id="movement_zindex_range" type="range" min="0" max="1" value="0" title="z-index">
+      </section>
+      <!---Section Menu Tileset---------->
+      <section id="menu_tileset">Tilesets</section>
+    </aside>
+    <!---layer---------->
+    <aside id="layer">
+      <!---Section Layer Select---------->
+      <section id="layer_select">Select
+        <div id="select"></div>
+      </section>
+      <!---Section Layer List---------->
+      <section id="layer_list">Layers
+        <div>0</div>
+        <div>1</div>
+        <div>2</div>
+      </section>
+      <!---Section Export Map---------->
+      <section id="menu_export_map">
+        <input type="button" value="export">
+        <textarea></textarea>
+      </section>
+    </aside>
+    <!---Map---------->
+    <main id="map">
+      <div id="map_movement"></div>
+      <div id="map_tileset_1"></div>
+      <div id="map_tileset_2"></div>
+    </main>
+    <!---Error---------->
+    <div id="error"></div>
+    <!---Scripts---------->
+    <script src="../js/game/map/new_bark_town.js"></script>
+    <script src="../js/game/map/road_29.js"></script>
+    <script>
+    /* -------------------- Variables -------------------- */
+    var v_map = {
+      id : {
+        map : document.getElementById("map"),
+        movement : document.getElementById("map_movement"),
+        tileset_1 : document.getElementById("map_tileset_1"),
+        tileset_2 : document.getElementById("map_tileset_2"),
+      },
+      y : 0,
+      x : 0,
+      height : "0px",
+      width : "0px",
+      length : 0,
+    };
+    var v_select = {
+      tileset : null,
+      locked : false,
+    };
+    var v_layer = {
+      0 : false,
+      1 : false,
+      2 : false,
+    };
+
+    /* -------------------- Events -------------------- */
+    // ----- click
+    document.getElementById("generate_map").addEventListener("click", function(){
+      f_map_new(document.getElementById("generate_map_y").children[1].value, document.getElementById("generate_map_x").children[1].value);
+    });
+
+    document.getElementById("select").addEventListener("click", f_select_reset);
+
+    // Add/Remove block
+    document.getElementById("menu_add_remove_block").children[0].children[0].addEventListener("click", f_map_remove_block_top);
+    document.getElementById("menu_add_remove_block").children[1].children[0].addEventListener("click", f_map_remove_block_bottom);
+    document.getElementById("menu_add_remove_block").children[2].children[0].addEventListener("click", f_map_remove_block_right);
+    document.getElementById("menu_add_remove_block").children[3].children[0].addEventListener("click", f_map_remove_block_left);
+
+    document.getElementById("menu_add_remove_block").children[0].children[2].addEventListener("click", f_map_new_block_top);
+    document.getElementById("menu_add_remove_block").children[1].children[2].addEventListener("click", f_map_new_block_bottom);
+    document.getElementById("menu_add_remove_block").children[2].children[2].addEventListener("click", f_map_new_block_right);
+    document.getElementById("menu_add_remove_block").children[3].children[2].addEventListener("click", f_map_new_block_left);
+
+    // Movement
+    document.getElementById("movement").children[0].addEventListener("click", function(){f_select_update("movement_0")});
+    document.getElementById("movement").children[1].addEventListener("click", function(){f_select_update("movement_1")});
+    document.getElementById("movement").children[2].addEventListener("click", function(){f_select_update("movement_2")});
+    document.getElementById("movement").children[3].addEventListener("click", function(){f_select_update("movement_3")});
+
+    // Layers
+    document.getElementById("layer_list").children[0].addEventListener("click", function(){f_layer_update(0)});
+    document.getElementById("layer_list").children[1].addEventListener("click", function(){f_layer_update(1)});
+    document.getElementById("layer_list").children[2].addEventListener("click", function(){f_layer_update(2)});
+
+    // Import
+    document.getElementById("import_map_button").addEventListener("click", function(){f_map_new_import()});
+
+    // Export
+    document.getElementById("menu_export_map").children[0].addEventListener("click", f_map_export);
+
+    // ----- input
+    document.getElementById("movement_opacity_range").addEventListener("input", function(){f_movement_opacity_update(this.value)});
+    document.getElementById("movement_zindex_range").addEventListener("input", function(){f_movement_zindex_update(this.value)});
+
+    // ----- keypress
+    window.addEventListener("keypress", function(){
+      switch (event.key) {
+        case "e":
+          f_select_lock();
+      }
+    });
+    /* -------------------- Functions -------------------- */
+    f_tileset_add_list();
+
+    function f_tileset_list(){
+      return [
+        "a", "b", "c", "d", "e", "f",
+        "aa", "ab", "ac",
+        "ba", "bb",
+        "ca", "cb", "cc", "cd", "ce", "cf", "cg", "ch", "ci", "cj", "ck", "cl", "cm", "cn", "co", "cp", "cq", "cr", "cs", "ct", "cu", "cv", "cw", "cx", "cy", "cz",
+        "da", "db", "dc", "dd", "de", "df", "dg", "dh", "di", "dj", "dk", "dl", "dm", "dn", "do", "dp", "dq", "dr", "ds", "dt", "du", "dv", "dw", "dx", "dy", "dz",
+        "ea", "eb", "ec", "ed", "ee", "ef", "eg", "eh", "ei", "ej", "ek", "el", "em", "en", "eo", "ep", "eq", "er", "es", "et", "eu", "ev", "ew", "ex", "ey", "ez",
+        "fa", "fb", "fc", "fd", "fe", "ff", "fg", "fh", "fi",
+      ];
+    }
+
+    function f_map_new(p_map_y, p_map_x){
+      // Temp variables
+      let v_temp_element_1;
+
+      // Variables
+      v_map.y = Number(p_map_y);
+      v_map.x = Number(p_map_x);
+      v_map.height = (p_map_y * 32) + "px";
+      v_map.width = (p_map_x * 32) + "px";
+      v_map.length = (p_map_y * p_map_x);
+
+      // Remove old map block
+      for (var i = v_map.id.tileset_1.children.length; i > 0; i--) {
+        f_map_remove_block(i - 1);
+      }
+
+      // Generate new map block
+      for (var i = 0; i < v_map.length; i++) {
+        f_map_add_block();
+      }
+
+      // Generate new map position
+      f_map_new_position();
+
+      // Update layers
+      v_layer[0] = false;
+      f_layer_update(0);
+    }
+
+    function f_map_new_import(){
+      // Temp variables
+      let v_temp_map = window["f_map_" + document.getElementById("import_map").value]();
+
+      // Generate map
+      f_map_new(v_temp_map.y, v_temp_map.x);
+
+      // Movement & Tilesets
+      for (var i = 0; i < v_map.length; i++) {
+        v_map.id.movement.children[i].className = "movement_" + v_temp_map.block[i][0];
+        v_map.id.tileset_1.children[i].className = v_temp_map.block[i][1];
+        if (v_temp_map.block[i][2] != null) {
+          v_map.id.tileset_2.children[i].className = v_temp_map.block[i][2];
+        }
+      }
+    }
+
+    function f_map_add_block(){
+      v_map.id.movement.append(f_map_new_block(0));
+      v_map.id.tileset_1.append(f_map_new_block(1));
+      v_map.id.tileset_2.append(f_map_new_block(2));
+    }
+
+    function f_map_remove_block(p_number){
+      v_map.id.movement.children[p_number].remove();
+      v_map.id.tileset_1.children[p_number].remove();
+      v_map.id.tileset_2.children[p_number].remove();
+    }
+
+    function f_map_new_block(p_event_value){
+      // Temp variables
+      let v_temp_element_1;
+
+      // Generate new map block
+      v_temp_element_1 = document.createElement("div")
+      v_temp_element_1.addEventListener("click", function(){f_map_new_tileset(this, p_event_value)});
+      v_temp_element_1.addEventListener("mouseover", function(){if(v_select.locked){f_map_new_tileset(this, p_event_value)}});
+
+      return v_temp_element_1;
+    }
+
+    function f_map_new_block_top(){
+      for (var i = 0; i < v_map.x; i++) {
+        v_map.id.movement.prepend(f_map_new_block(0));
+        v_map.id.tileset_1.prepend(f_map_new_block(1));
+        v_map.id.tileset_2.prepend(f_map_new_block(2));
+      }
+
+      // Update variables
+      v_map.y++;
+      v_map.height = (v_map.y * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_new_block_bottom(){
+      for (var i = 0; i < v_map.x; i++) {
+        f_map_add_block();
+      }
+
+      // Update variables
+      v_map.y++;
+      v_map.height = (v_map.y * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_new_block_right(){
+      // Temp variables
+      let v_temp_block_number = (v_map.x - 1);
+
+      for (var i = 0; i < v_map.y; i++) {
+        v_map.id.movement.children[v_temp_block_number].after(f_map_new_block(0));
+        v_map.id.tileset_1.children[v_temp_block_number].after(f_map_new_block(1));
+        v_map.id.tileset_2.children[v_temp_block_number].after(f_map_new_block(2));
+
+        v_temp_block_number += (v_map.x + 1);
+      }
+
+      // Update variables
+      v_map.x++;
+      v_map.widht = (v_map.x * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_new_block_left(){
+      // Temp variables
+      let v_temp_block_number = 0;
+
+      for (var i = 0; i < v_map.y; i++) {
+        v_map.id.movement.children[v_temp_block_number].before(f_map_new_block(0));
+        v_map.id.tileset_1.children[v_temp_block_number].before(f_map_new_block(1));
+        v_map.id.tileset_2.children[v_temp_block_number].before(f_map_new_block(2));
+
+        v_temp_block_number += (v_map.x + 1);
+      }
+
+      // Update variables
+      v_map.x++;
+      v_map.widht = (v_map.x * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_remove_block_top(){
+      for (var i = 0; i < v_map.x; i++) {
+        v_map.id.movement.children[0].remove();
+        v_map.id.tileset_1.children[0].remove();
+        v_map.id.tileset_2.children[0].remove();
+      }
+
+      // Update variables
+      v_map.y--;
+      v_map.height = (v_map.y * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_remove_block_bottom(){
+      // Temp variables
+      let v_temp_child_number = (v_map.id.movement.children.length - 1);
+
+      for (var i = v_map.x; i > 0; i--) {
+        v_map.id.movement.children[v_temp_child_number].remove();
+        v_map.id.tileset_1.children[v_temp_child_number].remove();
+        v_map.id.tileset_2.children[v_temp_child_number].remove();
+
+        v_temp_child_number--;
+      }
+
+      // Update variables
+      v_map.y--;
+      v_map.height = (v_map.y * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_remove_block_right(){
+      // Temp variables
+      let v_temp_block_number = (v_map.x - 1);
+
+      for (var i = 0; i < v_map.y; i++) {
+        v_map.id.movement.children[v_temp_block_number].remove();
+        v_map.id.tileset_1.children[v_temp_block_number].remove();
+        v_map.id.tileset_2.children[v_temp_block_number].remove();
+
+        v_temp_block_number += (v_map.x - 1);
+      }
+
+      // Update variables
+      v_map.x--;
+      v_map.widht = (v_map.x * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_remove_block_left(){
+      // Temp variables
+      let v_temp_block_number = 0;
+
+      for (var i = 0; i < v_map.y; i++) {
+        v_map.id.movement.children[v_temp_block_number].remove();
+        v_map.id.tileset_1.children[v_temp_block_number].remove();
+        v_map.id.tileset_2.children[v_temp_block_number].remove();
+
+        v_temp_block_number += (v_map.x - 1);
+      }
+
+      // Update variables
+      v_map.x--;
+      v_map.widht = (v_map.x * 32) + "px";
+      v_map.length = (v_map.y * v_map.x);
+
+      f_map_new_position();
+    }
+
+    function f_map_new_position(){
+      // Temp variables
+      let v_temp_map_y = 0;
+      let v_temp_map_x = 0;
+
+      // Generate new map position
+      for (var i = 0; i < v_map.length; i++) {
+        v_map.id.movement.children[i].style = "top: " + (v_temp_map_y * 32) + "px; left:" + (v_temp_map_x * 32) + "px";
+        v_map.id.movement.children[i].title = "y: " + (v_temp_map_y + 1) + ", x: " + (v_temp_map_x + 1) + ", " + (i);
+        v_map.id.tileset_1.children[i].style = "top: " + (v_temp_map_y * 32) + "px; left:" + (v_temp_map_x * 32) + "px";
+        v_map.id.tileset_2.children[i].style = "top: " + (v_temp_map_y * 32) + "px; left:" + (v_temp_map_x * 32) + "px";
+
+        v_temp_map_x++;
+        if (v_temp_map_x == v_map.x) {
+          v_temp_map_x = 0;
+          v_temp_map_y++;
+        }
+      }
+    }
+
+    function f_map_new_tileset(p_element, p_event_value){
+      if (v_select.tileset == null) {
+        p_element.removeAttribute("class");
+      }
+      else if (p_event_value == 0 && !v_select.tileset.includes("movement_")) {
+        f_error("Error : Bad Layer, select layer \"1\" or \"2\"");
+      }
+      else if (p_event_value != 0 && v_select.tileset.includes("movement_")) {
+        f_error("Error : Bad Layer, select only layer \"0\"");
+      }
+      else {
+        p_element.className = v_select.tileset;
+      }
+    }
+
+    function f_tileset_add_list(){
+      // Temp variables
+      let v_temp_element_1;
+      let v_temp_element_2;
+
+      let v_tileset_list = f_tileset_list();
+
+      // Generate tileset list
+      v_temp_element_1 = document.createElement("div");
+      v_temp_element_1.id = "tileset";
+
+      for (var i = 0; i < v_tileset_list.length; i++) {
+        v_temp_element_2 = document.createElement("div");
+        v_temp_element_2.className = v_tileset_list[i];
+        v_temp_element_2.addEventListener("click", function(){f_select_update(this.className)});
+        v_temp_element_1.append(v_temp_element_2);
+      }
+
+      document.getElementById("menu_tileset").append(v_temp_element_1);
+    }
+
+    function f_select_update(p_value){
+      // Update variable
+      v_select.tileset = p_value;
+
+      // Update interface
+      document.getElementById("select").className = p_value;
+    }
+
+    function f_select_reset(){
+      // Reset variable
+      v_select.tileset = null;
+
+      // Reset interface
+      document.getElementById("select").className = "";
+    }
+
+    function f_select_lock(){
+      if (v_select.locked) {
+        v_select.locked = false;
+        document.getElementById("select").classList.remove("locked");
+      }
+      else {
+        v_select.locked = true;
+        document.getElementById("select").classList.add("locked");
+      }
+    }
+
+    function f_layer_update(p_value){
+      // Temp variables
+      let v_temp_layer_id = document.getElementById("layer_list").children[p_value];
+
+      // Update layer
+      if (v_layer[p_value]) {
+        v_layer[p_value] = false;
+        v_temp_layer_id.removeAttribute("class");
+
+        v_map.id.map.classList.remove("layer_" + p_value);
+      }
+      else {
+        v_layer[p_value] = true;
+        v_temp_layer_id.className = "selected";
+
+        v_map.id.map.classList.add("layer_" + p_value);
+      }
+    }
+
+    function f_movement_opacity_update(p_value){
+      v_map.id.movement.style.opacity = (p_value / 100);
+    }
+
+    function f_movement_zindex_update(p_value){
+      if (p_value == 1) {
+        document.getElementById("map").classList.add("important");
+      }
+      else {
+        document.getElementById("map").classList.remove("important");
+      }
+    }
+
+    function f_map_export(){
+      // Temp variables
+      let v_temp_map = "";
+
+      v_temp_map += "y: " + v_map.y + ",\n";
+      v_temp_map += "x: " + v_map.x + ",\n";
+      v_temp_map += "length: " + v_map.length + ",\n";
+      v_temp_map += "block: [\n";
+
+      for (var i = 0; i < v_map.length; i++) {
+        v_temp_map += ("[" + f_map_export_block(0,  i) + ", " + f_map_export_block(1,  i) + f_map_export_block(2,  i) + "],\n");
+      }
+
+      v_temp_map += "],";
+
+      // Export
+      console.log(v_temp_map);
+      document.getElementById("menu_export_map").children[1].value = v_temp_map;
+      document.getElementById("menu_export_map").children[1].select();
+      // document.execCommand("copy");
+    }
+
+    function f_map_export_block(p_value, p_number){
+      if (p_value == 0) {
+        switch (v_map.id.movement.children[p_number].className) {
+          case "movement_0":
+            return 0;
+            break;
+          case "movement_1":
+            return 1;
+            break;
+          case "movement_2":
+            return 2;
+            break;
+          case "movement_3":
+            return 3;
+            break;
+        }
+      }
+      else if (p_value == 1){
+        return "\"" + v_map.id.tileset_1.children[p_number].className + "\"";
+      }
+      else if (p_value == 2){
+        if (v_map.id.tileset_2.children[p_number].className != "") {
+          return ", \"" + v_map.id.tileset_2.children[p_number].className + "\"";
+        }
+        else {
+          return "";
+        }
+      }
+    }
+
+    function f_error(p_text){
+      // Temp variables
+      let v_temp_element_1;
+
+      // Generate error
+      v_temp_element_1 = document.createElement("div")
+      v_temp_element_1.style = "top: " + event.clientY + "px; left: " + (event.clientX + 24) + "px";
+      v_temp_element_1.className = "kf_error";
+      v_temp_element_1.textContent = p_text;
+      setTimeout(function(){document.getElementById("error").children[0].remove()}, 2000);
+
+      document.getElementById("error").append(v_temp_element_1);
+    }
+
+
+    </script>
+  </body>
+</html>

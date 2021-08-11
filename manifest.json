@@ -1,0 +1,15 @@
+{
+  "name": "Pokemon Web Crystal",
+  "short_name": "Pokemon Web Crystal",
+  "icons": [
+    {
+      "src": "/rsc/icon/main.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "rgb(45, 45, 45)",
+  "theme_color": "rgb(255, 55, 55)"
+}
